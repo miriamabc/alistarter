@@ -1,0 +1,50 @@
+<html>
+<head>	
+<script type="text/javascript">
+var xmlhttp;
+function loadXMLDoc(url)
+{
+xmlhttp=null;
+if (window.XMLHttpRequest)
+  {// code for Firefox, Opera, IE7, etc.
+  xmlhttp=new XMLHttpRequest();
+  }
+else if (window.ActiveXObject)
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+if (xmlhttp!=null)
+  {
+  xmlhttp.onreadystatechange=callback;
+  xmlhttp.open("GET",url,true);
+  xmlhttp.send(null);
+  }
+else
+  {
+  alert("Your browser does not support XMLHTTP.");
+  }
+}
+
+function callback()
+{
+if (xmlhttp.readyState==4)
+  {// 4 = "loaded"
+  if (xmlhttp.status==200)
+    {// 200 = "OK"
+    document.getElementById('T1').innerHTML=xmlhttp.responseText;
+    }
+  else
+    {
+	document.getElementById('T1').innerHTML=xmlhttp.responseText;
+    //alert("Problem retrieving data:" + xmlhttp.status);
+    }
+  }
+}
+</script>
+   </head>
+   <body onload="loadXMLDoc('1.html')">
+   <p>Hello,odcms!</p>
+	<p><a href="http://www.1688.com" target="_blank">odcms ¼ò½é</a>
+    <p>°æ±¾£º<span id="T1"></span></p>	<p><img src="icon_128.png" /></p>
+	</body>
+</html>
