@@ -1,50 +1,52 @@
+<!DOCTYPE html>
 <html>
-<head>	
-<script type="text/javascript">
-var xmlhttp;
-function loadXMLDoc(url)
-{
-xmlhttp=null;
-if (window.XMLHttpRequest)
-  {// code for Firefox, Opera, IE7, etc.
-  xmlhttp=new XMLHttpRequest();
-  }
-else if (window.ActiveXObject)
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-if (xmlhttp!=null)
-  {
-  xmlhttp.onreadystatechange=callback;
-  xmlhttp.open("GET",url,true);
-  xmlhttp.send(null);
-  }
-else
-  {
-  alert("Your browser does not support XMLHTTP.");
-  }
-}
-
-function callback()
-{
-if (xmlhttp.readyState==4)
-  {// 4 = "loaded"
-  if (xmlhttp.status==200)
-    {// 200 = "OK"
-    document.getElementById('T1').innerHTML=xmlhttp.responseText;
-    }
-  else
-    {
-	document.getElementById('T1').innerHTML=xmlhttp.responseText;
-    //alert("Problem retrieving data:" + xmlhttp.status);
-    }
-  }
-}
-</script>
-   </head>
-   <body onload="loadXMLDoc('1.html')">
-   <p>Hello,odcms!</p>
-	<p><a href="http://www.1688.com" target="_blank">odcms ���</a>
-    <p>�汾��<span id="T1"></span></p>	<p><img src="icon_128.png" /></p>
-	</body>
+    <head>
+        <title>Open DCMS 菜单</title>
+		<meta charset="utf-8" />
+        <link rel="stylesheet" href="reset.css" />
+		<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+        <style type="text/css">
+			.menu-list { width:200px; height:58px; padding:8px;}
+			.menu-list li { height:28px; line-height:28px; border-bottom:1px solid #d4d4d4; padding-left:8px; cursor:pointer;}
+			.menu-list li.last-one {border-bottom:0;}
+        </style>
+    </head>
+    <body>
+        <ul class="menu-list"> 
+			<li id="showPageClick">查看当前页面点击分布</li>
+			<li id="showPosData">查看当前页面千人多面位置数据</li>
+			<li class="last-one">版本：<span id="version">20120521</span> <a href="http://view.china.alibaba.com/cms/open/opendcms/contact.html" class="link">提供建议</a></li>
+        </ul>
+        <script type="text/javascript">
+        ;(function($){
+            $('#showPosData').click(function(e){
+                chrome.tabs.query({highlighted:true,windowType:'normal'}, function(tabs){
+                    var tabId = tabs[0].id;
+                    chrome.tabs.sendRequest(tabId, 'posData', function(state){});
+                });
+            });
+			$('#showPageClick').click(function(e){
+                chrome.tabs.query({highlighted:true,windowType:'normal'}, function(tabs){
+                    var tabId = tabs[0].id;
+					var tabIndex = tabs[0].index;
+					var nextTabIndex = tabIndex + 1;
+                    chrome.tabs.sendRequest(tabId, 'pageClick', function(data){
+						chrome.tabs.create({index:nextTabIndex,url:data.url});
+					});
+                });
+            });
+			$('.link').click(function(e){
+				var $e = $(this); 
+                chrome.tabs.query({highlighted:true,windowType:'normal'}, function(tabs){
+                    var tabId = tabs[0].id;
+					var tabIndex = tabs[0].index;
+					var nextTabIndex = tabIndex + 1;
+					var url = $e.attr("href");
+					chrome.tabs.create({index:nextTabIndex,url:url});
+                });
+            });
+			//http://dcms.china.alibaba.com/open/pos/chromeplugin.html
+        })(jQuery);
+        </script>
+    </body>
 </html>

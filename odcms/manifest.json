@@ -1,15 +1,19 @@
 {
     "name": "Open DCMS 测试版",
-    "version": "0.1",
+    "version": "1.1",
+	"manifest_version": 2,
     "description": "DCMS专用chrome扩展，方便用户查看数据，编辑页面等",
+	"permissions": [
+        "tabs", "http://china.alibaba.com/*", "http://dcms.china.alibaba.com/*", "http://*.china.alibaba.com/*"
+    ],
 	"icons": {
 		"48": "icon_48.fw.png",
 		"128": "icon_128.fw.png"
 	},
 	"browser_action": {
 		"default_icon": "icon_48.fw.png",
-        "default_title": "DCMS 投放位曝光量",
-        "default_popup": "menu.html"
+        "default_title": "Open DCMS 测试版",
+        "default_popup": "popup.html"
 	},
     "content_scripts": [{
         "matches":["http://china.alibaba.com/*", "http://dcms.china.alibaba.com/*", "http://*.china.alibaba.com/*"],
@@ -18,8 +22,5 @@
         "css": ["pos_vdata.css"],
         "run_at":"document_end",
 		"all_frames": true
-    }],
-    "permissions": [
-        "tabs", "http://china.alibaba.com/*", "http://dcms.china.alibaba.com/*", "http://*.china.alibaba.com/*"
-    ]
+    }]
 }
