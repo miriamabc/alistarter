@@ -15,6 +15,9 @@
         "default_title": "Open DCMS 测试版",
         "default_popup": "popup.html"
 	},
+	"background": {
+		"scripts": ["jquery-1.7.2.min.js","background.js"]
+	},
     "content_scripts": [{
         "matches":["http://china.alibaba.com/*", "http://dcms.china.alibaba.com/*", "http://*.china.alibaba.com/*"],
 		"exclude_matches":["http://pageclick.alibaba-inc.com/*"],
