@@ -1,6 +1,6 @@
 {
     "name": "Open DCMS 测试版",
-    "version": "1.1",
+    "version": "1.2",
 	"manifest_version": 2,
     "description": "DCMS专用chrome扩展，方便用户查看数据，编辑页面等",
 	"permissions": [
@@ -16,12 +16,12 @@
         "default_popup": "popup.html"
 	},
 	"background": {
-		"scripts": ["jquery-1.7.2.min.js","background.js"]
+		"scripts": ["jquery-1.8.2.min.js","background.js"]
 	},
     "content_scripts": [{
         "matches":["http://china.alibaba.com/*", "http://dcms.china.alibaba.com/*", "http://*.china.alibaba.com/*"],
 		"exclude_matches":["http://pageclick.alibaba-inc.com/*"],
-        "js": ["jquery-1.7.2.min.js","pos_vdata.js"],
+        "js": ["jquery-1.8.2.min.js","content.js"],
         "css": ["pos_vdata.css"],
         "run_at":"document_end",
 		"all_frames": true

@@ -58,11 +58,6 @@ function dataRequest(posEl, dataContainer){
 		}
 	});
 }
-function getBeforeDay(){
-	var today = new Date(),
-		beforeDay = new Date(Date.parse(today)-1000*60*60*24);
-	return beforeDay.getFullYear()+'-'+(beforeDay.getMonth()+1)+'-'+beforeDay.getDate();
-}
 
 /*var View = {
 	insertPageClickButton: function(){
@@ -81,7 +76,6 @@ function getBeforeDay(){
 	});
 }
 main();*/
-var Page = backbone
 
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse){
 	if (request==='posData'){
@@ -91,10 +85,7 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse){
 		});
 		sendResponse({data:'success'});
 	}
-	if (request==='pageClick'){
-		sendResponse({url:libs.generatePageClickUrl(),title:document.title});
-	}
 	if (request==='editPage'){
-		sendResponse({url:libs.generatePageClickUrl(),title:document.title});
+		sendResponse({spm: $('body').data('spm')});
 	}
 });
