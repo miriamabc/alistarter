@@ -2,24 +2,40 @@
 <html>
     <head>
         <title>Open DCMS</title>
+        <!-- Bootstrap -->
 		<meta charset="utf-8" />
-        <link rel="stylesheet" href="reset.css" />
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"  media="screen">
         <style type="text/css">
-			.menu-list { width:200px; height:58px; padding:8px;}
-			.menu-list li { height:28px; line-height:28px; border-bottom:1px solid #d4d4d4; padding-left:8px; cursor:pointer;}
-			.menu-list li.last-one {border-bottom:0;}
+            body{background: #eeeeee;}
+            #wrapper{width: 320px;padding: 0 15px;}
+            .logo{font-size: 16px;color:#006dcc;padding: 15px 0 10px 0;}
+            .action{border: 1px solid #e3e3e3;border-radius:5px;padding: 20px 20px 10px 20px;text-align: center;}
+            .action button{margin-bottom: 10px;}
+            .feedback{text-align: right;font-size: 12px;padding: 10px 0 0 0;}
         </style>
     </head>
     <body>
-        <ul class="menu-list"> 
-			<li id="showPageClick">查看当前页点击分布</li>
-            <li id="editPage">编辑此页面</li>
-            <li id="showPosData">查看当前页DCMS千人多面数据</li>
-			<li class="last-one">版本：<span id="version">20121024</span> <a href="http://view.china.alibaba.com/cms/open/opendcms/contact.html" class="link">提供建议</a></li>
-        </ul>
+        <div id="wrapper">
+            <div class="logo">
+                OpenDate
+            </div>
+            <div class="action">
+                <button class="btn" id="showPageClick">点击分布</button>
+                <button class="btn" id="showTraffic">访问路径</button>
+                <button class="btn" id="showTrend">流量趋势</button>
+                <button class="btn" id="editPage">编辑页面</button>
+                <button class="btn disabled">敬请期待</button>
+                <button class="btn disabled">敬请期待</button>
+            </div>
+            <p class="feedback">
+                <a href="http://view.china.alibaba.com/cms/open/opendcms/contact.html" class="muted link">我要反馈</a>
+            </p>
+        </div>
 		<script type="text/javascript" src="jquery-1.8.2.min.js"></script>
         <script type="text/javascript" src="underscore-min.js"></script>
         <script type="text/javascript" src="backbone-min.js"></script>
+        <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="popup.js"></script>
+        
     </body>
 </html>

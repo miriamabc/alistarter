@@ -1,4 +1,4 @@
-function show(posEl){
+/* function show(posEl){
 	var dataContainer = showCover(posEl);
 	dataRequest(posEl, dataContainer);
 }
@@ -57,35 +57,46 @@ function dataRequest(posEl, dataContainer){
 			$('.odcms-vdata').fadeIn('slow');
 		}
 	});
-}
+};*/
 
-/*var View = {
-	insertPageClickButton: function(){
-		$('body').before('<style>.odcms_pageclick{font-size:10px;position:fixed;top:2px;right:2px;width:10px;height:10px;}</style>\
-			<div class="odcms_pageclick">\
-				pageclick\
-			</div>\
-		');
-	}
-}*/
-
-/*function main(){
-	View.insertPageClickButton();
-	$('.odcms_pageclick').click(function(){
-		libs.openNewTab(libs.generatePageClickUrl());
+function viewTrace(){
+	$('[data-trace]').each(function(){
+		var trace = $(this).data('trace');
+		if (trace){
+			$(this).css('position', 'relative')
+				.attr('href', '');
+			$(this).append('<div class="showHit" style="position: absolute;width:10px;background-color:#FF9900;border-style:solid;border-width:1px;border-color:#CC6600;color:#333;;font-size:12px;font-family:arial;text-align:left;line-height:80%;padding:1px;top:0px;left:0px;" data-keytrace="' + trace + '">&nbsp;</div>');
+			$(this).find('.showHit').hover(function(){
+				$(this).css('width', '')
+					.css('z-index', '999');
+				$(this).html('<textarea>'+trace+'</textarea>');
+			},function(){
+				$(this).css('width', '10px')
+					.css('z-index', '');
+				$(this).html('&nbsp;');
+			});
+			$(this).find('.showHit').click(function(event){
+				event.stopPropagation();
+				event.preventDefault();
+			})
+		}
 	});
 }
-main();*/
+
 
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse){
-	if (request==='posData'){
+	/*if (request==='posData'){
 		var posEls = $('.dcms-beacon-position');
 		posEls.each(function(i, posEl){
 			show($(posEl));
 		});
 		sendResponse({data:'success'});
-	}
+	}*/
 	if (request==='editPage'){
 		sendResponse({spm: $('body').data('spm')});
+	}
+	if (request==='viewTrace'){
+		viewTrace();
+		sendResponse('success');
 	}
 });
