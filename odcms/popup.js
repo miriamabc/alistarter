@@ -24,7 +24,10 @@
 			"click #showPageClick":   "viewData",
 			'click #showTrace': 'viewTrace',
 			'click #showTraffic': 'viewTraffic',
-			'click #showTrend': 'viewTrend'
+			'click #showTrend': 'viewTrend',
+			'click #showRealtime': 'viewRealtime',
+			'click #showVisitor': 'viewVisitor',
+
 		},
 
 		edit: function() {
@@ -72,6 +75,22 @@
 			var yymmdd = this.getDate()[0];
 			chrome.tabs.query({highlighted:true,windowType:'normal'}, function(tabs){
 				var uri = "http://ipage.alibaba-inc.com/dataview/path/path.htm?date=" + yymmdd +"&url=" + tabs[0].url.split('//')[1].split('?')[0];
+				chrome.tabs.create({index:tabs[0].index + 1,url:uri});
+			})
+		},
+
+		viewRealtime: function(){
+			var yymmdd = this.getDate()[0];
+			chrome.tabs.query({highlighted:true,windowType:'normal'}, function(tabs){
+				var uri = "http://ipage.alibaba-inc.com/dataview/online/onlineAnalysis.htm?date=" + yymmdd +"&url=" + tabs[0].url.split('//')[1].split('?')[0];
+				chrome.tabs.create({index:tabs[0].index + 1,url:uri});
+			})
+		},
+
+		viewVisitor: function(){
+			var yymmdd = this.getDate()[0];
+			chrome.tabs.query({highlighted:true,windowType:'normal'}, function(tabs){
+				var uri = "http://ipage.alibaba-inc.com/dataview/visit/visit.htm?date=" + yymmdd +"&url=" + tabs[0].url.split('//')[1].split('?')[0];
 				chrome.tabs.create({index:tabs[0].index + 1,url:uri});
 			})
 		},

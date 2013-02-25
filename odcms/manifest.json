@@ -1,6 +1,6 @@
 {
     "name": "Open Date",
-    "version": "2.1",
+    "version": "2.2",
 	"manifest_version": 2,
     "description": "阿里巴巴中文站（CBU）专用chrome扩展，方便用户查看页面数据，编辑页面等",
 	"permissions": [
