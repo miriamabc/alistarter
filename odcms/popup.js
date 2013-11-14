@@ -64,42 +64,52 @@
 
 			return d;
 		},
+		formatUrl: function(url){
+			url = '%2F' + url.split('//')[1].split('?')[0].split('/');
+			url = url.substring(0, url.length-1);
+			return url;
+		},
 		viewData: function(){
-			var yymmdd = this.getDate()[0];
+			var yymmdd = this.getDate()[0],
+				formatUrl = this.formatUrl;
 			chrome.tabs.query({highlighted:true,windowType:'normal'}, function(tabs){
-				var uri = "http://ipage.alibaba-inc.com/dataview/view/pageView.htm?date=" + yymmdd +"&url=" + tabs[0].url.split('//')[1].split('?')[0];
+				var uri = "http://ipage.1688.com/dataview/view/pageView.htm?_input_charset=utf-8&date=" + yymmdd +"&url=" + formatUrl(tabs[0].url);
 				chrome.tabs.create({index:tabs[0].index + 1,url:uri});
 			})
 		},
 		viewTraffic: function(){
-			var yymmdd = this.getDate()[0];
+			var yymmdd = this.getDate()[0],
+				formatUrl = this.formatUrl;
 			chrome.tabs.query({highlighted:true,windowType:'normal'}, function(tabs){
-				var uri = "http://ipage.alibaba-inc.com/dataview/path/path.htm?date=" + yymmdd +"&url=" + tabs[0].url.split('//')[1].split('?')[0];
+				var uri = "http://ipage.1688.com/dataview/path/path.htm?_input_charset=utf-8&date=" + yymmdd +"&url=" + formatUrl(tabs[0].url);
 				chrome.tabs.create({index:tabs[0].index + 1,url:uri});
 			})
 		},
 
 		viewRealtime: function(){
-			var yymmdd = this.getDate()[0];
+			var yymmdd = this.getDate()[0],
+				formatUrl = this.formatUrl;
 			chrome.tabs.query({highlighted:true,windowType:'normal'}, function(tabs){
-				var uri = "http://ipage.alibaba-inc.com/dataview/online/onlineAnalysis.htm?date=" + yymmdd +"&url=" + tabs[0].url.split('//')[1].split('?')[0];
+				var uri = "http://ipage.1688.com/dataview/online/onlineAnalysis.htm?_input_charset=utf-8&date=" + yymmdd +"&url=" + formatUrl(tabs[0].url);
 				chrome.tabs.create({index:tabs[0].index + 1,url:uri});
 			})
 		},
 
 		viewVisitor: function(){
-			var yymmdd = this.getDate()[0];
+			var yymmdd = this.getDate()[0],
+				formatUrl = this.formatUrl;
 			chrome.tabs.query({highlighted:true,windowType:'normal'}, function(tabs){
-				var uri = "http://ipage.alibaba-inc.com/dataview/visit/visit.htm?date=" + yymmdd +"&url=" + tabs[0].url.split('//')[1].split('?')[0];
+				var uri = "http://ipage.1688.com/dataview/visit/visit.htm?_input_charset=utf-8&date=" + yymmdd +"&url=" + formatUrl(tabs[0].url);
 				chrome.tabs.create({index:tabs[0].index + 1,url:uri});
 			})
 		},
 
 		viewTrend: function(){
 			var yymmdd_1 = this.getDate()[0],
-				yymmdd_7 = this.getDate()[1];
+				yymmdd_7 = this.getDate()[1],
+				formatUrl = this.formatUrl;
 			chrome.tabs.query({highlighted:true,windowType:'normal'}, function(tabs){
-				var uri = "http://ipage.alibaba-inc.com/dataview/trends/trends.htm?url=" + tabs[0].url.split('//')[1].split('?')[0] + '&date=' + yymmdd_1;
+				var uri = "http://ipage.1688.com/dataview/trends/trends.htm?_input_charset=utf-8&url=" + formatUrl(tabs[0].url) + '&date=' + yymmdd_1;
 				chrome.tabs.create({index:tabs[0].index + 1,url:uri});
 			})
 		},
